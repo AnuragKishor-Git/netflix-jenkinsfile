@@ -53,7 +53,7 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t dockeraki/akdocker:1.0 ."
+                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t dockeraki/akdocker:1.1 ."
                        sh "docker push dockeraki/akdocker:1.0 "
                     }
                 }
@@ -61,7 +61,7 @@ pipeline{
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image dockeraki/akdocker:1.0 > trivyimage.txt"
+                sh "trivy image dockeraki/akdocker:1.1 > trivyimage.txt"
             }
         }
     }
