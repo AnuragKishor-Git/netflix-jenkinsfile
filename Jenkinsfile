@@ -61,7 +61,7 @@ pipeline{
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image akdocker/netflixclone:latest > trivyimage.txt"
+                sh "trivy image dockeraki/akdocker:1.0 > trivyimage.txt"
             }
         }
     }
