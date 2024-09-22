@@ -54,7 +54,7 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t akdocker:${BUILD_TAG} ."
+                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t dockeraki/akdocker:${BUILD_TAG} ."
                        sh "docker push dockeraki/akdocker:${BUILD_TAG} "
                     }
                 }
