@@ -62,7 +62,7 @@ pipeline{
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image dockeraki/akdocker:1.0 > trivyimage.txt"
+                sh "trivy image dockeraki/akdocker:${BUILD_TAG} > trivyimage_${BUILD_TAG}.txt"
             }
         }
     }
