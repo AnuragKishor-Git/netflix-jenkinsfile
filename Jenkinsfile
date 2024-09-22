@@ -54,7 +54,8 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t dockeraki/akdocker:${BUILD_TAG} ."
+                       sh "docker build --build-arg TMDB_V3_API_KEY=aaa66cf52251d74b295d9f7d336ac815 -t netflix-tmdb ."
+                       sh "docker tag netflix-tmdb dockeraki/akdocker:${BUILD_TAG} "
                        sh "docker push dockeraki/akdocker:${BUILD_TAG} "
                     }
                 }
@@ -63,6 +64,11 @@ pipeline{
         stage("TRIVY"){
             steps{
                 sh "trivy image dockeraki/akdocker:${BUILD_TAG} > trivyimage_${BUILD_TAG}.txt"
+            }
+        }
+        stage('Deploy to container'){
+            steps{
+                sh 'docker run -d --name netflix-tmdb -p 8081:80 dockeraki/akdocker:${BUILD_TAG'
             }
         }
     }
