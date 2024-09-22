@@ -68,7 +68,7 @@ pipeline{
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix-tmdb -p 8081:80 dockeraki/akdocker:${BUILD_TAG'
+                sh "docker run -d --name netflix-tmdb -p 8081:80 dockeraki/akdocker:${BUILD_TAG"
             }
         }
     }
